@@ -146,38 +146,6 @@ let modules = [
   },
 ];
 
-const passwordHash = "aaf5601bb787b76fb556eecd4ac7d4b78b855551bd06b22256f9cc36cba399df";
-const gate = document.querySelector("#gate");
-const gateForm = document.querySelector("#gateForm");
-const coursePassword = document.querySelector("#coursePassword");
-const gateError = document.querySelector("#gateError");
-
-async function sha256(value) {
-  const buffer = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
-  return [...new Uint8Array(buffer)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
-}
-
-function unlockCourse() {
-  sessionStorage.setItem("pr-media-course-unlocked", "true");
-  gate.classList.add("hidden");
-}
-
-if (sessionStorage.getItem("pr-media-course-unlocked") === "true") {
-  gate.classList.add("hidden");
-}
-
-gateForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  gateError.textContent = "";
-  const enteredHash = await sha256(coursePassword.value);
-  if (enteredHash === passwordHash) {
-    unlockCourse();
-  } else {
-    gateError.textContent = "Incorrect password. Please try again.";
-    coursePassword.select();
-  }
-});
-
 let platforms = [
   ["📌", "Pinterest", "Pins"],
   ["📘", "Facebook", "Reels"],
@@ -658,6 +626,14 @@ const toggleModules = document.querySelector("#toggleModules");
 const downloadCalendar = document.querySelector("#downloadCalendar");
 const progressText = document.querySelector("#progressText");
 const progressBar = document.querySelector("#progressBar");
+const certificateForm = document.querySelector("#certificateForm");
+const certificateName = document.querySelector("#certificateName");
+const certificateCourse = document.querySelector("#certificateCourse");
+const adminForm = document.querySelector("#adminForm");
+const adminTitle = document.querySelector("#adminTitle");
+const adminInstructor = document.querySelector("#adminInstructor");
+const adminEmail = document.querySelector("#adminEmail");
+const resetAdmin = document.querySelector("#resetAdmin");
 
 let activeCourseKey = localStorage.getItem("pr-media-active-course") || "affiliate";
 const storageKeyBase = "pr-media-tapoos-course-progress";
@@ -666,6 +642,24 @@ let completedLessons = new Set(JSON.parse(localStorage.getItem(`${storageKeyBase
 let viewerTasks = new Set(JSON.parse(localStorage.getItem(`${viewerStorageKeyBase}-${activeCourseKey}`) || "[]"));
 let activeModuleIndex = 0;
 let activeLessonIndex = 0;
+
+function applyAdminCustomization() {
+  const settings = JSON.parse(localStorage.getItem("pr-media-admin-settings") || "{}");
+  if (settings.title) document.title = settings.title;
+  if (settings.instructor) {
+    document.querySelectorAll(".instructor h2").forEach((node) => {
+      node.textContent = settings.instructor;
+    });
+  }
+  if (settings.email) {
+    document.querySelectorAll("[href^='mailto:']").forEach((link) => {
+      link.href = `mailto:${settings.email}`;
+    });
+  }
+  adminTitle.value = settings.title || "";
+  adminInstructor.value = settings.instructor || "";
+  adminEmail.value = settings.email || "";
+}
 
 function saveProgress() {
   localStorage.setItem(`${storageKeyBase}-${activeCourseKey}`, JSON.stringify([...completedLessons]));
@@ -1124,6 +1118,7 @@ function downloadCalendarCsv() {
 }
 
 applyCourse(activeCourseKey);
+applyAdminCustomization();
 
 moduleList.addEventListener("click", (event) => {
   const header = event.target.closest(".module-header");
@@ -1221,3 +1216,67 @@ creativeGrid.addEventListener("click", async (event) => {
 });
 
 downloadCalendar.addEventListener("click", downloadCalendarCsv);
+
+certificateForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const name = certificateName.value.trim();
+  if (!name) return;
+
+  const html = `
+    <!doctype html>
+    <html>
+      <head>
+        <title>Certificate - ${name}</title>
+        <style>
+          body { margin: 0; font-family: Georgia, serif; background: #111; color: #111; }
+          .certificate { width: 1120px; height: 780px; margin: 30px auto; padding: 70px; box-sizing: border-box; background: #f8f1df; border: 18px solid #e5bf32; text-align: center; }
+          .brand { letter-spacing: 5px; text-transform: uppercase; font: 700 18px Arial, sans-serif; }
+          h1 { margin: 70px 0 10px; font-size: 64px; }
+          h2 { margin: 28px 0; font-size: 46px; color: #8b6d00; }
+          p { font: 700 24px Arial, sans-serif; line-height: 1.5; }
+          .footer { display: flex; justify-content: space-between; margin-top: 90px; font: 700 18px Arial, sans-serif; }
+          @media print { body { background: #fff; } .certificate { margin: 0; } }
+        </style>
+      </head>
+      <body>
+        <section class="certificate">
+          <div class="brand">PR Media LLC & Tapoos</div>
+          <h1>Certificate of Completion</h1>
+          <p>This certificate is proudly presented to</p>
+          <h2>${name}</h2>
+          <p>for completing the ${certificateCourse.value}.</p>
+          <div class="footer">
+            <span>Haris Sajjad</span>
+            <span>${new Date().toLocaleDateString()}</span>
+          </div>
+        </section>
+        <script>window.print();<\/script>
+      </body>
+    </html>
+  `;
+
+  const certificateWindow = window.open("", "_blank");
+  certificateWindow.document.write(html);
+  certificateWindow.document.close();
+});
+
+adminForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  localStorage.setItem(
+    "pr-media-admin-settings",
+    JSON.stringify({
+      title: adminTitle.value.trim(),
+      instructor: adminInstructor.value.trim(),
+      email: adminEmail.value.trim(),
+    })
+  );
+  applyAdminCustomization();
+});
+
+resetAdmin.addEventListener("click", () => {
+  localStorage.removeItem("pr-media-admin-settings");
+  adminTitle.value = "";
+  adminInstructor.value = "";
+  adminEmail.value = "";
+  window.location.reload();
+});

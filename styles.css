@@ -319,6 +319,74 @@ h1 #heroLineOne {
   gap: 14px;
 }
 
+.download-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.download-grid a,
+.tool-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.download-grid a {
+  display: flex;
+  align-items: center;
+  min-height: 58px;
+  padding: 0 18px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 900;
+}
+
+.download-grid a:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.tool-card {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+}
+
+.tool-card label {
+  display: grid;
+  gap: 8px;
+  color: var(--text);
+  font-weight: 900;
+}
+
+.tool-card input,
+.tool-card select {
+  min-height: 48px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #10100f;
+  color: var(--text);
+}
+
+.tool-card button {
+  min-height: 48px;
+  border: 1px solid #f6f2eb;
+  border-radius: 8px;
+  background: #050505;
+  color: var(--text);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.tool-card button:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
 .course-card-option {
   min-height: 132px;
   padding: 22px;
@@ -1169,6 +1237,7 @@ h1 #heroLineOne {
 
   .platform-grid,
   .course-switcher,
+  .download-grid,
   .option-grid,
   .resource-grid,
   .link-grid,
@@ -1218,6 +1287,7 @@ h1 #heroLineOne {
 @media (max-width: 430px) {
   .platform-grid,
   .course-switcher,
+  .download-grid,
   .option-grid,
   .resource-grid,
   .link-grid,

@@ -1,4 +1,15 @@
 {
+  "functions": {
+    "api/*.js": {
+      "includeFiles": "private/**"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/course",
+      "destination": "/api/course"
+    }
+  ],
   "cleanUrls": true,
   "trailingSlash": false
 }
