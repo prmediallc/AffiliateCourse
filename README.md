@@ -7,6 +7,30 @@ Static web app for PR Media LLC & Tapoos student courses.
 - Affiliate Marketing Mastery Course - UAE Edition
 - Facebook Content Monetization Course - Pakistan + UAE Edition
 
+## Node Version
+
+A professional pure Node.js version is available in `node-app/`.
+
+It includes:
+
+- built-in Node HTTP server
+- `.env` support
+- JSON database
+- HTTP-only login sessions
+- protected course routes
+- student progress API
+- admin settings API
+- certificate generation
+- downloadable worksheets
+
+Run locally:
+
+```bash
+cd node-app
+cp .env.example .env
+npm start
+```
+
 ## Run locally
 
 Open `index.html` directly in a browser.

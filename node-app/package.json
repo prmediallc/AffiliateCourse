@@ -1,0 +1,15 @@
+{
+  "name": "pr-media-tapoos-course-node",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pure Node course portal for PR Media LLC & Tapoos.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development node server.js",
+    "check": "node --check server.js && node --check lib/database.js && node --check lib/env.js && node --check lib/security.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

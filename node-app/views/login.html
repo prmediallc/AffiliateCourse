@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PR Media LLC & Tapoos protected student course portal."
+    />
+    <title>Course Access | PR Media LLC & Tapoos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <section class="gate" aria-label="Course password">
+      <form class="gate-card" id="loginForm">
+        <span class="eyebrow">PR Media LLC & Tapoos</span>
+        <h1>Course Access</h1>
+        <p>Enter the student password to open the course portal.</p>
+        <label for="coursePassword">Password</label>
+        <input id="coursePassword" type="password" autocomplete="current-password" required />
+        <button type="submit">Open Course</button>
+        <small id="loginError" aria-live="polite"></small>
+        <div class="gate-links">
+          <a href="/contact.html">Contact</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/affiliate-disclosure.html">Affiliate Disclosure</a>
+        </div>
+      </form>
+    </section>
+
+    <script>
+      const form = document.querySelector("#loginForm");
+      const password = document.querySelector("#coursePassword");
+      const error = document.querySelector("#loginError");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        error.textContent = "";
+
+        const response = await fetch("/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ password: password.value }),
+        });
+
+        if (response.ok) {
+          window.location.href = "/course";
+          return;
+        }
+
+        error.textContent = "Incorrect password. Please try again.";
+        password.select();
+      });
+    </script>
+  </body>
+</html>
