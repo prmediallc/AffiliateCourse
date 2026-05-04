@@ -1,6 +1,11 @@
 # PR Media LLC & Tapoos Affiliate Marketing Mastery Course
 
-Static web app for the UAE Edition affiliate marketing course.
+Static web app for PR Media LLC & Tapoos student courses.
+
+## Included Courses
+
+- Affiliate Marketing Mastery Course - UAE Edition
+- Facebook Content Monetization Course - Pakistan + UAE Edition
 
 ## Run locally
 
