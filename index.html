@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PR Media LLC & Tapoos Affiliate Marketing Mastery Course for UAE students."
+    />
+    <title>Affiliate Marketing Mastery Course | PR Media LLC & Tapoos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="gate" id="gate" aria-label="Course password">
+      <form class="gate-card" id="gateForm">
+        <span class="eyebrow">PR Media LLC & Tapoos</span>
+        <h1>Course Access</h1>
+        <p>Enter the student password to open the Affiliate Marketing Mastery Course.</p>
+        <label for="coursePassword">Password</label>
+        <input id="coursePassword" type="password" autocomplete="current-password" required />
+        <button type="submit">Open Course</button>
+        <small id="gateError" aria-live="polite"></small>
+        <div class="gate-links">
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="affiliate-disclosure.html">Affiliate Disclosure</a>
+        </div>
+      </form>
+    </section>
+
+    <main class="app-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">PR Media LLC & Tapoos</span>
+          <h1>Affiliate Marketing <span>Mastery Course</span></h1>
+          <p>Complete guide — Amazon, Noon, Shein & CJ Affiliate · UAE Edition</p>
+          <div class="stats" aria-label="Course highlights">
+            <span>12 Modules</span>
+            <span>60+ Lessons</span>
+            <span>6 Platforms</span>
+            <span>UAE Students</span>
+          </div>
+        </div>
+        <div class="hero-ring" aria-hidden="true"></div>
+      </section>
+
+      <section class="instructor panel">
+        <div class="avatar">HS</div>
+        <div>
+          <h2>Haris Sajjad</h2>
+          <p>Founder · PR Media LLC & Tapoos</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Platforms Covered</div>
+        <div class="platform-grid" id="platformGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Course Modules <span>- Tap To Expand</span></div>
+        <div class="module-list" id="moduleList"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Detailed Lesson View</div>
+        <div class="lesson-viewer" id="lessonViewer"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">All Included Options</div>
+        <div class="option-grid" id="optionGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Student Resources</div>
+        <div class="resource-grid" id="resourceGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Official Signup Links</div>
+        <div class="link-grid" id="linkGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Compliance & Rules</div>
+        <div class="option-grid" id="complianceGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Worksheets & Templates</div>
+        <div class="option-grid" id="worksheetGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Blog & Profile Setup</div>
+        <div class="option-grid" id="blogGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Content Examples</div>
+        <div class="option-grid" id="exampleGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Canva Specs & Grok Prompt Library</div>
+        <div class="resource-grid" id="creativeGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Winning Product Scorecard</div>
+        <div class="scorecard-grid" id="scorecardGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">30-Day Launch Calendar</div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Final Project & Certificate</div>
+        <div class="option-grid" id="finalGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">FAQ</div>
+        <div class="faq-list" id="faqList"></div>
+      </section>
+
+      <section class="outcome panel">
+        <h2>Final Student Outcome</h2>
+        <p>
+          Students will launch a complete UAE affiliate marketing system: branded
+          social accounts, approved affiliate accounts, product research sheet,
+          Canva content, Grok AI scripts, platform posting workflow, tracking,
+          reporting, and a 30-day growth plan.
+        </p>
+        <div class="progress-wrap">
+          <div>
+            <span>Course Progress</span>
+            <strong id="progressText">0%</strong>
+          </div>
+          <div class="progress-track">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="legal-footer" aria-label="Legal and contact pages">
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="affiliate-disclosure.html">Affiliate Disclosure</a>
+      </nav>
+
+      <footer class="actions">
+        <button id="toggleModules" type="button">Expand any module ↗</button>
+        <button id="downloadCalendar" type="button">Get content calendar ↗</button>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
